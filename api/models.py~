@@ -23,13 +23,13 @@ class Forumpost(models.Model):
     """
     title = models.CharField(max_length=40, blank=False)
     content = models.TextField(blank=False)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, unique=True)
     promoted = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
-    tags = models.ManyToManyField('tag', blank=True)
+    tags = models.ManyToManyField('tag')
     def __str__(self):
  		return str(self.id) +":" +self.title
-
+ 		
     class Meta:
         #This will be used by the admin interface
         verbose_name_plural = "Forumposts"
